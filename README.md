@@ -5,4 +5,5 @@ Este será o repositório com todos os projetos realizados no bootcamp da Digita
 * Projetos utilizando Java:
 
     [1. Banco Digital](banco-digital)   
-    [2. Padrões de Projetos](padroes-projetos)
+    [2. Padrões de Projetos](padroes-projetos)    
+    [3. Abstraindo um Bootcamp Usando Orientação a Objetos](desafio)
