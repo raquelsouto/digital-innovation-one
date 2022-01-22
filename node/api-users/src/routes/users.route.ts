@@ -9,27 +9,32 @@ usersRoute.get('/users', async (req: Request, res: Response, next: NextFunction)
     res.status(200).json(users);
 });
 
-usersRoute.get('/users/:id', (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
+usersRoute.get('/users/:id', async (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
     const id = req.params.id;
-    res.status(StatusCodes.OK).send({ id });
+    const user = await userRepository.findById(id);
+    res.status(StatusCodes.OK).send(user);
 });
 
-usersRoute.post('/users', (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
+usersRoute.post('/users', async(req: Request <{ id: string }>, res: Response, next: NextFunction) => {
     const newUser = req.body;
-    console.log(req.body);
-    res.status(StatusCodes.CREATED).send(newUser);
+    const id = await userRepository.create(newUser);
+    res.status(StatusCodes.CREATED).send(id);
 });
 
-usersRoute.put('/users/:id', (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
+usersRoute.put('/users/:id', async (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const modifiedUser = req.body;
-    
     modifiedUser.id = id;
+
+    await userRepository.update(modifiedUser);
 
     res.status(StatusCodes.OK).send(modifiedUser);
 });
 
-usersRoute.delete('/users/:id', (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
+usersRoute.delete('/users/:id', async (req: Request <{ id: string }>, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    
+    await userRepository.remove(id);
     res.sendStatus(StatusCodes.OK);
 });
 
