@@ -9,3 +9,5 @@ Este será o repositório com todos os projetos realizados no bootcamp da Digita
     [3. Abstraindo um Bootcamp Usando Orientação a Objetos](java/desafio)     
 
 * Projetos utilizando Node.js:
+
+    [1. CRUD Usuários](node/api-users)   
